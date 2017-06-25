@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/jquery.fullPage.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.fullPage.full.js"></script>
+    <style>
+        #myMenu {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dowebok">
+        <div class="section" data-anchor="index">
+            <h3>index</h3>
+        </div>
+        <div class="section" data-anchor="cpu">
+            <h3>cpu</h3>
+        </div>
+        <div class="section" data-anchor="momery">
+            <h3>momery</h3>
+        </div>
+        <div class="section" data-anchor="reseach">
+            <h3>research</h3>
+        </div>
+    </div>
+    <ul id="myMenu">
+        <li data-menuanchor="index" class="active"><a href="#index">index</a></li>
+        <li data-menuanchor="cpu"><a href="#cpu">cpu</a></li>
+        <li data-menuanchor="momery"><a href="#momery">momery</a></li>
+        <li data-menuanchor="reseach"><a href="#reseach">research</a></li>
+    </ul>
+    <script>
+    $(function(){
+    	$('#dowebok').fullpage({
+            onLeave: function(index, nextIndex, direction){
+                /*console.log("index:"+index);
+                console.log('nextIndex:'+nextIndex);
+                console.log('direction:'+direction);*/
+                console.log(nextIndex);
+                switch(nextIndex){
+                    case 2:
+                        console.log("this is cpu page");
+                        break;
+                    case 3:
+                        console.log("this is momery page");
+                        break;
+                    case 4:
+                        console.log("this is research page");
+                        break;
+                    case 1:
+                        console.log("this is index page");
+                        break;
+                }
+            },
+        });
+        $.fn.fullpage.silentMoveTo('firstSlide', 2);
+
+    })
+    var goto="";
+    $(document).on('click', '#myMenu > li', function(){
+        goto=$(this).attr("data-menuanchor");
+        console.log(goto);
+        $.fn.fullpage.silentMoveTo(goto, 1);
+    });
+    </script>
+</body>
+
+</html>
